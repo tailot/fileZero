@@ -1,6 +1,6 @@
 # fileZERO
 
-Dematerializes any file and makes it to 0 space!
+Dematerializes any file and makes it to 0 space ( inode space :-) )!
 
 # Usage
 file2directory filename
