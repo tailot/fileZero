@@ -23,12 +23,13 @@ function createLoopDir(base, str) {
     let acc = '';
     sp.forEach((elem) => {
         if (elem === '') {
-            acc = `${acc}_/`;
+            acc = `_`;
         } else {
-            acc = `${acc}${elem}/`;
+            acc = `${elem}`;
         }
-        if (!fs.existsSync(`${base}/${acc}`)) {
-            fs.mkdirSync(`${base}/${acc}`);
+        if (!fs.existsSync(`${acc}`)) {
+            fs.mkdirSync(`${acc}`);
+            process.chdir(`${acc}`);
         }
     });
 }
@@ -38,11 +39,12 @@ fs.readFile(process.argv[2], "utf8", function (err, data) {
     const dn = `_${process.argv[2]}`;
     if (!fs.existsSync(dn)) {
         fs.mkdirSync(dn);
+        process.chdir(dn);
     }
     const f = Buffer.from(data, 'binary').toString('base64').match(/.{1,130}/g);
     if (fs.existsSync(f[0])) { return false; }
-    f.forEach((element, index) => {
-        createLoopDir(dn, `${index}/${element}`);
+    f.forEach((element) => {
+        createLoopDir(dn, `${element}`);
     });
     return true;
 });
