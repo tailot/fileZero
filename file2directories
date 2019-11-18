@@ -25,7 +25,7 @@ function createLoopDir(base, str) {
         if (elem === '') {
             acc = '_';
         } else {
-            acc = `${elem}`;
+            acc = elem;
         }
         if (!fs.existsSync(acc)) {
             fs.mkdirSync(acc);
