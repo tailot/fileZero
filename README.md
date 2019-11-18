@@ -2,6 +2,9 @@
 
 Dematerializes any file and makes it to 0 space ( inode space :-) )!
 
+# Installation
+npm i file2directory
+
 # Usage
 file2directory filename
 
