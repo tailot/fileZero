@@ -6,7 +6,15 @@ Dematerializes any file and makes it to 0 space ( inode space :-) )!
 npm i file2directory
 
 # Usage
+
+Transform a file into a directories
+
 file2directory filename
+
+Transform a directories in one file
+
+directories2file directory
+
 
 # Warning
 THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES

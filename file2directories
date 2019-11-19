@@ -19,29 +19,20 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 var fs = require("fs");
 
 function createLoopDir(str) {
-    const sp = str.split('/');
-    let acc = '';
-    sp.forEach((elem) => {
-        if (elem === '') {
-            acc = '_';
-        } else {
-            acc = elem;
-        }
-        if (!fs.existsSync(acc)) {
-            fs.mkdirSync(acc);
-            process.chdir(acc);
-        }
-    });
+    //TODO remove sign, I didn’t want to change it :-*
+    const sp = str.replace(/\//g,'|');
+    fs.mkdirSync(sp);
+    process.chdir(sp);
 }
 
-fs.readFile(process.argv[2], "utf8", function (err, data) {
+fs.readFile(process.argv[2], function (err, data) {
     if (err) throw err;
-    const dn = `_${process.argv[2]}`;
+    const dn = `_${process.argv[2].replace(/\//g, '')}`;
     if (!fs.existsSync(dn)) {
         fs.mkdirSync(dn);
         process.chdir(dn);
     }
-    const f = Buffer.from(data, 'binary').toString('base64').match(/.{1,130}/g);
+    const f = Buffer.from(data).toString('base64').match(/.{1,130}/g);
     if (fs.existsSync(f[0])) { return false; }
     f.forEach((element) => {
         createLoopDir(element);
