@@ -18,7 +18,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 var fs = require("fs");
 
-function createLoopDir(base, str) {
+function createLoopDir(str) {
     const sp = str.split('/');
     let acc = '';
     sp.forEach((elem) => {
