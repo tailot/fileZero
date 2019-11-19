@@ -1,6 +1,6 @@
 {
   "name": "filetodirectory",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "File to directory",
   "main": "file2directories",
   "scripts": {
