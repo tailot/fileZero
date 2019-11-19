@@ -20,7 +20,7 @@ var fs = require("fs");
 
 function createLoopDir(str) {
     //TODO remove sign, I didn’t want to change it :-*
-    const sp = str.replace(/\//g,'|');
+    const sp = str.replace(/\//g, '|');
     fs.mkdirSync(sp);
     process.chdir(sp);
 }
@@ -33,9 +33,12 @@ fs.readFile(process.argv[2], function (err, data) {
         process.chdir(dn);
     }
     const f = Buffer.from(data).toString('base64').match(/.{1,130}/g);
-    if (fs.existsSync(f[0])) { return false; }
-    f.forEach((element) => {
-        createLoopDir(element);
-    });
+    if (fs.existsSync(process.argv[2])) {
+        return false;
+    } else {
+        f.forEach((element) => {
+            createLoopDir(element);
+        });
+    }
     return true;
 });

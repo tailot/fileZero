@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 var fs = require("fs");
-const nameFile = process.argv[2];
+const nameDir = process.argv[2].replace(/\//g, '');
 const currDir = process.cwd();
 
 function readLoopDir(dir, prev, acc) {
@@ -8,12 +8,12 @@ function readLoopDir(dir, prev, acc) {
     fs.readdir(prev, (err, files) => {
         if (err) throw err;
         if (files.length === 0) {
-            const data = _acc.replace(`/${nameFile}/`, '').replace(/\//g, '').replace(/\|/g, '/');
+            const data = _acc.replace(`/${nameDir}/`, '').replace(/\//g, '').replace(/\|/g, '/');
             const p = new Buffer.from(data, 'base64').toString('binary');
             process.chdir(currDir);
 
             fs.writeFile(
-                `new_${nameFile}`,
+                `new_${nameDir}`,
                 p, 'binary', (err) => {
                     if (err) throw err;
                 });
@@ -28,5 +28,7 @@ function readLoopDir(dir, prev, acc) {
     })
 }
 
-readLoopDir(nameFile, nameFile, '');
+readLoopDir(nameDir, nameDir, '');
+
+
 
