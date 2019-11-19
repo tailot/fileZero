@@ -44,7 +44,7 @@ fs.readFile(process.argv[2], "utf8", function (err, data) {
     const f = Buffer.from(data, 'binary').toString('base64').match(/.{1,130}/g);
     if (fs.existsSync(f[0])) { return false; }
     f.forEach((element) => {
-        createLoopDir(dn, element);
+        createLoopDir(element);
     });
     return true;
 });
