@@ -3,7 +3,7 @@
 Dematerializes any file and makes it to 0 space ( inode space :-) )!
 
 # Installation
-npm i file2directory
+npm i file2directory -g
 
 # Usage
 
