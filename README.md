@@ -2,18 +2,15 @@
 
 Dematerializes any file and makes it to 0 space ( inode space :-) )!
 
-# Installation
-npm i file2directory -g
-
 # Usage
 
 Transform a file into a directories
 
-file2directory filename
+./file2directory filename
 
 Transform a directories in one file
 
-directories2file directory
+./directories2file directory
 
 
 # Warning
