@@ -1,7 +1,3 @@
- <p align="center"> 
-    <img src="https://user-images.githubusercontent.com/40148896/94967693-db754780-04ff-11eb-8e3d-2b0160f41b18.png" alt="alternate text">
- </p>
-
 # fileZERO
 
 Dematerializes any file and makes it to 0 space ( inode space :-) )!
@@ -16,6 +12,9 @@ Transform a directories in one file
 
 directories2file directory
 
+ <p align="center"> 
+    <img src="https://user-images.githubusercontent.com/40148896/94967693-db754780-04ff-11eb-8e3d-2b0160f41b18.png" alt="alternate text">
+ </p>
 
 # Warning
 THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
