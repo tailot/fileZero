@@ -1,6 +1,6 @@
 {
   "name": "filetodirectory",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "File to directory",
   "main": "file2directories",
   "scripts": {
@@ -17,6 +17,9 @@
     "space",
     "inode"
   ],
+  "engines": {
+    "node": ">=14.10.0"
+  },
   "author": "Vincenzo Tilotta",
   "license": "ISC"
 }
