@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const fs = require("fs");
-const nameDir = process.argv[2].replace(/\//g, '');
+const nameDir = process.argv[2];
 const currDir = process.cwd();
 
 const readLoopDir = async (dir, prev, acc) => {
@@ -10,10 +10,11 @@ const readLoopDir = async (dir, prev, acc) => {
         if (files.length === 0) {
             const data = _acc.replace(`/${nameDir}/`, '').replace(/\//g, '').replace(/\|/g, '/');
             const p = new Buffer.from(data, 'base64').toString('binary');
+            const fileName = nameDir.replace(/\//g, '');
             process.chdir(currDir);
 
             fs.writeFile(
-                `new_${nameDir}`,
+                `new_${fileName}`,
                 p, 'binary', (err) => {
                     if (err) throw err;
                 });
@@ -29,6 +30,3 @@ const readLoopDir = async (dir, prev, acc) => {
 }
 
 readLoopDir(nameDir, nameDir, '');
-
-
-
