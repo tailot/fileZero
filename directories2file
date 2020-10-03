@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-var fs = require("fs");
+const fs = require("fs");
 const nameDir = process.argv[2].replace(/\//g, '');
 const currDir = process.cwd();
 
-function readLoopDir(dir, prev, acc) {
+const readLoopDir = async (dir, prev, acc) => {
     const _acc = `${acc}/${dir}`;
     fs.readdir(prev, (err, files) => {
         if (err) throw err;
