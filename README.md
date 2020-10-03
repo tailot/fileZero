@@ -1,4 +1,6 @@
- <p align="center"> 
+[![npm version](https://badge.fury.io/js/filetodirectory.svg)](https://badge.fury.io/js/filetodirectory)
+
+<p align="center"> 
     <img src="https://user-images.githubusercontent.com/40148896/94967693-db754780-04ff-11eb-8e3d-2b0160f41b18.png" alt="File zero">
  </p>
 
