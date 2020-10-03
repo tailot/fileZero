@@ -6,7 +6,7 @@
 
 # fileZERO
 
-Dematerializes any file and makes it to 0 space ( inode space :-) )!
+Dematerializes any file and makes it to 0 space (inode space)! The npm package has zero dependencies!
 
 # Usage
 
