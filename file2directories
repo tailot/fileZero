@@ -32,12 +32,10 @@ fs.readFile(process.argv[2], function (err, data) {
         process.chdir(dn);
     }
     const f = Buffer.from(data).toString('base64').match(/.{1,130}/g);
-    if (fs.existsSync(process.argv[2])) {
-        return false;
-    } else {
-        f.forEach((element) => {
-            createLoopDir(element);
-        });
-    }
+
+    f.forEach((element) => {
+        createLoopDir(element);
+    });
+
     return true;
 });
