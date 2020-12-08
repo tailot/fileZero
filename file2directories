@@ -2,7 +2,7 @@
 /*
 ISC License
 
-Copyright (c) 2019 Vincenzo Tilotta
+Copyright (c) 2019-2020 Vincenzo Tilotta
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
@@ -17,15 +17,25 @@ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 const fs = require("fs");
+const internationalization = require("./i18n/language");
+const language = internationalization.i18n();
 
-const createLoopDir =  async (str) => {
+if (process.argv.length < 3) {
+    console.error(language.LIMITPARAM);
+    process.exit(1);
+}
+
+const createLoopDir = async (str) => {
     const sp = str.replace(/\//g, '|');
     fs.mkdirSync(sp);
     process.chdir(sp);
 }
 
 fs.readFile(process.argv[2], function (err, data) {
-    if (err) throw err;
+    if (err) {
+        console.error(language.FILENOTFOUND);
+        throw err;
+    }
     const dn = `_${process.argv[2].replace(/\//g, '')}`;
     if (!fs.existsSync(dn)) {
         fs.mkdirSync(dn);
