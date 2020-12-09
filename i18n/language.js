@@ -9,7 +9,6 @@ module.exports = {
             lang.CALL();
             return lang;
         } catch {
-            console.log(2);
             console.error(en_US.WRONGLANGUAGE);
             return en_US;
         }
