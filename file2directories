@@ -31,7 +31,7 @@ const createLoopDir = async (str) => {
     process.chdir(sp);
 }
 
-fs.readFile(process.argv[2], function (err, data) {
+fs.readFile(process.argv[2], (err, data) => {
     if (err) {
         console.error(language.FILENOTFOUND);
         throw err;
@@ -46,6 +46,4 @@ fs.readFile(process.argv[2], function (err, data) {
     f.forEach((element) => {
         createLoopDir(element);
     });
-
-    return true;
 });
