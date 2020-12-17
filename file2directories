@@ -19,7 +19,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 const fs = require("fs");
 const internationalization = require("./i18n/language");
 const language = internationalization.i18n();
-const slice =  parseInt(process.argv[3]);
+const slice =  parseInt(process.argv[3]) > 0 ? process.argv[3] : 130 ;
 const regslice = new RegExp(`.{1,${slice}}`, 'g');
 const filename = process.argv[2];
 
