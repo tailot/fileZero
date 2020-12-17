@@ -19,6 +19,14 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 const fs = require("fs");
 const internationalization = require("./i18n/language");
 const language = internationalization.i18n();
+const slice =  parseInt(process.argv[3]);
+const regslice = new RegExp(`.{1,${slice}}`, 'g');
+const filename = process.argv[2];
+
+if(!slice){
+    console.error(language.SLICERROR);
+    process.exit(1);
+}
 
 if (process.argv.length < 3) {
     console.error(language.LIMITPARAM);
@@ -31,17 +39,18 @@ const createLoopDir = async (str) => {
     process.chdir(sp);
 }
 
-fs.readFile(process.argv[2], (err, data) => {
+fs.readFile(filename, (err, data) => {
     if (err) {
         console.error(language.FILENOTFOUND);
         throw err;
     }
-    const dn = `_${process.argv[2].replace(/\//g, '')}`;
+    const dn = `_${filename.replace(/\//g, '')}`;
     if (!fs.existsSync(dn)) {
         fs.mkdirSync(dn);
         process.chdir(dn);
     }
-    const f = Buffer.from(data).toString('base64').match(/.{1,130}/g);
+    
+    const f = Buffer.from(data).toString('base64').match(regslice);
 
     f.forEach((element) => {
         createLoopDir(element);
