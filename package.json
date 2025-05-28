@@ -1,14 +1,14 @@
 {
   "name": "filetodirectory",
-  "version": "2.0.4",
+  "version": "3.0.0",
   "description": "File to directory",
   "main": "file2directories",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "file2directories": "./file2directories",
-    "directories2file": "./directories2file"
+    "file2directories": "file2directories",
+    "directories2file": "directories2file"
   },
   "keywords": [
     "file",
