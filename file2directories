@@ -2,7 +2,7 @@
 /*
 ISC License
 
-Copyright (c) 2019-2020 Vincenzo Tilotta
+Copyright (c) 2019-2025 Vincenzo Tilotta
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
@@ -17,31 +17,45 @@ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 const fs = require("fs");
-const internationalization = require("./i18n/language");
-const language = internationalization.i18n();
-const slice =  parseInt(process.argv[3]) > 0 ? process.argv[3] : 130 ;
-const regslice = new RegExp(`.{1,${slice}}`, 'g');
+
+// Check for filename argument
+if (process.argv.length < 3 || !process.argv[2]) {
+    console.error('Usage: ./file2directories.js <filename> [slice_length]\n  <filename>      : The file to be processed.\n  [slice_length]  : Optional. Positive integer for chunk size (default: 130).');
+    process.exit(1);
+}
 const filename = process.argv[2];
 
-if(!slice){
-    console.error(language.SLICERROR);
+// Validate filename
+if (!fs.existsSync(filename) || !fs.lstatSync(filename).isFile()) {
+    console.error('Error: File not found or is not accessible.');
+    console.error('Usage: ./file2directories.js <filename> [slice_length]\n  <filename>      : The file to be processed.\n  [slice_length]  : Optional. Positive integer for chunk size (default: 130).');
     process.exit(1);
 }
 
-if (process.argv.length < 3) {
-    console.error(language.LIMITPARAM);
-    process.exit(1);
+// Parse and validate slice_length argument
+let sliceValue;
+if (process.argv[3] !== undefined) {
+    const parsedSlice = parseInt(process.argv[3]);
+    if (Number.isInteger(parsedSlice) && parsedSlice > 0) {
+        sliceValue = parsedSlice;
+    } else {
+        console.error('Error: slice_length must be a positive integer.');
+        console.error('Usage: ./file2directories.js <filename> [slice_length]\n  <filename>      : The file to be processed.\n  [slice_length]  : Optional. Positive integer for chunk size (default: 130).');
+        process.exit(1);
+    }
+} else {
+    sliceValue = 130; // Default value
 }
+const regslice = new RegExp(`.{1,${sliceValue}}`, 'g');
 
 const createLoopDir = async (str) => {
     const sp = str.replace(/\//g, '|');
     fs.mkdirSync(sp);
     process.chdir(sp);
 }
-
 fs.readFile(filename, (err, data) => {
     if (err) {
-        console.error(language.FILENOTFOUND);
+        console.error('Error: File not found or is not accessible.');
         throw err;
     }
     const dn = `_${filename.replace(/\//g, '')}`;
@@ -50,7 +64,7 @@ fs.readFile(filename, (err, data) => {
         process.chdir(dn);
     }
     
-    const f = Buffer.from(data).toString('base64').match(regslice);
+    const f = Buffer.from(data).toString('base64').match(regslice); // Using Buffer.from()
 
     f.forEach((element) => {
         createLoopDir(element);
