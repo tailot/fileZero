@@ -1,0 +1,19 @@
+<svg width="200" height="100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cursive F -->
+  <text x="10" y="70" font-family="cursive" font-size="70" fill="black">f</text>
+
+  <!-- Sun -->
+  <circle cx="130" cy="50" r="35" fill="yellow" />
+
+  <!-- Spiral inside the sun -->
+  <path d="M130,50 Q140,40 130,30 Q120,40 130,50 M130,50 Q140,60 130,70 Q120,60 130,50 M130,50 Q120,45 110,50 Q120,55 130,50 M130,50 Q140,45 150,50 Q140,55 130,50"
+        stroke="orange" stroke-width="2" fill="none">
+    <animateTransform attributeName="transform"
+                      attributeType="XML"
+                      type="rotate"
+                      from="0 130 50"
+                      to="360 130 50"
+                      dur="5s"
+                      repeatCount="indefinite" />
+  </path>
+</svg>
